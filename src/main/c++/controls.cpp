@@ -123,8 +123,8 @@ int update() {
    return c1;
 }
 
-void setRumbleState(int controller, bool rumble, int strength) {
-	
+bool setRumbleState(int controller, bool rumble, int strength) {
+    return false;
 }
 
 int* getMapping() {
