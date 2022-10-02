@@ -5,7 +5,7 @@ VERSION=${VERSION%"-SNAPSHOT"}
 cmake . \
 -DCMAKE_MODULE_PATH=. \
 -DCMAKE_BUILD_TYPE=Release \
--DLIBRARY_OUTPUT_PATH="/src/bin" \
+-DLIBRARY_OUTPUT_PATH="./bin/linux64" \
 
 make
 r1=$?
