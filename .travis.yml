@@ -7,5 +7,5 @@ os: linux
 dist: jammy
 
 script:
-  - cd /src/scripts/win64
+  - cd src/main/scripts/win64
   - cmake .
