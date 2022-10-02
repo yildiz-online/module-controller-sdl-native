@@ -8,7 +8,11 @@ dist: jammy
 
 script:
   - cd src/main/scripts/win64
-  - mkdir bin
+  - mkdir bin/win64
+  - chmod 777 build.sh
+  - ./build.sh
+  - cd src/main/scripts/linux64
+  - mkdir bin/linux64
   - chmod 777 build.sh
   - ./build.sh
 
@@ -16,5 +20,10 @@ deploy:
   provider: releases
   api_key: "$GITHUB_TOKEN"
   file:
-    - "bin/libcontroller-sdl.dll"
+    - "bin/win64/libcontroller-sdl.dll"
+    - "bin/linux64/libcontroller-sdl.so"
   skip_cleanup: true
+  on:
+    branches:
+      only:
+        - master
