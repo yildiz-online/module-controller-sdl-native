@@ -8,4 +8,5 @@ dist: jammy
 
 script:
   - cd src/main/scripts/win64
+  - chmod 777 build.sh
   - ./build.sh
