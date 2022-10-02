@@ -8,5 +8,4 @@ dist: jammy
 
 script:
   - cd src/main/scripts/win64
-  - cmake .
-  - make install
+  - ./build.sh
