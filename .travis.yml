@@ -16,7 +16,7 @@ deploy:
   provider: releases
   api_key: "$GITHUB_TOKEN"
   file:
-    - "bin/win64/libcontroller-sdl.dll"
+    - "bin/libcontroller-sdl.dll"
   skip_cleanup: true
   on:
     branches:
