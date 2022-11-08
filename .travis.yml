@@ -11,12 +11,17 @@ script:
   - mkdir bin
   - chmod 777 build.sh
   - ./build.sh
+  - cd ../linux64
+  - mkdir bin
+  - chmod 777 build.sh
+  - ./build.sh
 
 deploy:
   provider: releases
   api_key: "$GITHUB_TOKEN"
   file:
-    - "bin/libcontroller-sdl.dll"
+    - "src/main/scripts/win64/bin/libcontroller-sdl.dll"
+    - "src/main/scripts/linux64/bin/libcontroller-sdl.so"
   skip_cleanup: true
   on:
     branches:
