@@ -20,6 +20,6 @@ file(
         ${CMAKE_SOURCE_DIR}/../../c++/*.h
 )
 
-add_library(pxl SHARED ${source_files})
+add_library(controller-sdl SHARED ${source_files})
 
-target_link_libraries(pxl ${CMAKE_SOURCE_DIR}/lib/libsdl2.so)
+target_link_libraries(controller-sdl ${CMAKE_SOURCE_DIR}/lib/libsdl2.so)
