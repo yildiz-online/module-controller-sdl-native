@@ -11,7 +11,7 @@ script:
   - cd src/main/scripts/win64
   - chmod 777 build.sh
   - ./build.sh
-  - cd src/main/scripts/linux64
+  - cd ../linux64
   - chmod 777 build.sh
   - ./build.sh
 
