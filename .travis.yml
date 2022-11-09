@@ -15,6 +15,10 @@ script:
   - chmod 777 build.sh
   - ./build.sh
   - pwd
+  - cd ..
+  - ls
+  - cd bin
+  - ls
 
 deploy:
   provider: releases
