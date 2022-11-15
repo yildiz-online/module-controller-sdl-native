@@ -1,11 +1,2 @@
 *.iml
 target
-/bin/*
-/src/main/scripts/win64/Makefile
-/src/main/scripts/win64/CMakeCache.txt
-/src/main/scripts/win64/CMakeFiles/
-/src/main/scripts/win64/cmake_install.cmake
-/src/main/scripts/linux64/Makefile
-/src/main/scripts/linux64/CMakeCache.txt
-/src/main/scripts/linux64/CMakeFiles/
-/src/main/scripts/linux64/cmake_install.cmake
