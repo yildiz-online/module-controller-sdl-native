@@ -17,6 +17,10 @@ typedef void (PXLCALL *controllerEventCallback)(int controller, int button, bool
 
 PXLEXPORT void initControls();
 
+PXLEXPORT void setFileMapping(const char* file);
+
+PXLEXPORT void terminateControls();
+
 PXLEXPORT const char* getControllerName(int c);
 
 ///
