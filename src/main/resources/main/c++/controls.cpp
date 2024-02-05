@@ -88,7 +88,7 @@ void initJoystick(int player) {
     if(player < MAX_PLAYERS -1) {
         controllers[player] = SDL_GameControllerOpen(player);
         ids[player] = SDL_JoystickInstanceID(SDL_GameControllerGetJoystick(controllers[player]));
-		SDL_Log("Controller added %s", getControllerName(player));
+        SDL_Log("Controller added %s", getControllerName(player));
     }
 }
 
@@ -147,7 +147,24 @@ int update() {
                 case 1: c2 = e.cbutton.state ? c2 | (1 << e.cbutton.button) : c2 & (~(1 << e.cbutton.button)); break;
                 case 2: c3 = e.cbutton.state ? c3 | (1 << e.cbutton.button) : c3 & (~(1 << e.cbutton.button)); break;
                 case 3: c4 = e.cbutton.state ? c4 | (1 << e.cbutton.button) : c4 & (~(1 << e.cbutton.button)); break;
-				case -1: SDL_Log("Button pressed for unregistered controller.\n");
+                case -1: SDL_Log("Button pressed for unregistered controller.\n");
+            }
+        } else if (e.type == SDL_CONTROLLERAXISMOTION) {
+            auto index = getControllerIndex(e.cbutton.which);
+            if(e.cbutton.button == SDL_CONTROLLER_AXIS_TRIGGERLEFT) {
+                auto value = SDL_GameControllerGetAxis(controllers[index], SDL_CONTROLLER_AXIS_TRIGGERLEFT);
+                if(value == 0) {
+                    this->release(index, 24);
+                } else {
+                    this->press(index, 24);
+                }
+            } else if (e.cbutton.button == SDL_CONTROLLER_AXIS_TRIGGERRIGHT) {
+                 auto value = SDL_GameControllerGetAxis(controllers[index], SDL_CONTROLLER_AXIS_TRIGGERRIGHT);
+                 if(value == 0) {
+                    this->release(index, 25);
+                 } else {
+                    this->press(index, 25);
+                 }
             }
         } else if (e.type == SDL_KEYUP) {
             switch(e.key.keysym.sym) {
@@ -181,7 +198,7 @@ int update() {
                 case 1: c2Plugged = true; break;
                 case 2: c3Plugged = true; break;
                 case 3: c4Plugged = true; break;
-				case -1: SDL_Log("Controller added for unregistered controller.\n");
+                case -1: SDL_Log("Controller added for unregistered controller.\n");
             }
         } else if (e.type == SDL_CONTROLLERDEVICEREMOVED) {
             switch(getControllerIndex(e.cbutton.which)) {
@@ -197,7 +214,7 @@ int update() {
                 case 1: c2Plugged = true; break;
                 case 2: c3Plugged = true; break;
                 case 3: c4Plugged = true; break;
-				case -1: SDL_Log("Joystick added for unregistered controller.\n");
+                case -1: SDL_Log("Joystick added for unregistered controller.\n");
             }
         } else if (e.type == SDL_JOYDEVICEREMOVED) {
             switch(getControllerIndex(e.jbutton.which)) {
