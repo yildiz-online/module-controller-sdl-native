@@ -153,18 +153,22 @@ int update() {
             auto index = getControllerIndex(e.cbutton.which);
             if(e.cbutton.button == SDL_CONTROLLER_AXIS_TRIGGERLEFT) {
                 auto value = SDL_GameControllerGetAxis(controllers[index], SDL_CONTROLLER_AXIS_TRIGGERLEFT);
-                if(value == 0) {
-                    this->release(index, 24);
-                } else {
-                    this->press(index, 24);
+                switch(getControllerIndex(e.cbutton.which)) {
+                    case 0: c1 = value != 0 ? c1 | (1 << 24) : c1 & (~(1 << 24)); break;
+                    case 1: c2 = value != 0 ? c2 | (1 << 24) : c2 & (~(1 << 24)); break;
+                    case 2: c3 = value != 0 ? c3 | (1 << 24) : c3 & (~(1 << 24)); break;
+                    case 3: c4 = value != 0 ? c4 | (1 << 24) : c4 & (~(1 << 24)); break;
+                    case -1: SDL_Log("Button pressed for unregistered controller.\n");
                 }
             } else if (e.cbutton.button == SDL_CONTROLLER_AXIS_TRIGGERRIGHT) {
-                 auto value = SDL_GameControllerGetAxis(controllers[index], SDL_CONTROLLER_AXIS_TRIGGERRIGHT);
-                 if(value == 0) {
-                    this->release(index, 25);
-                 } else {
-                    this->press(index, 25);
-                 }
+                auto value = SDL_GameControllerGetAxis(controllers[index], SDL_CONTROLLER_AXIS_TRIGGERRIGHT);
+                switch(getControllerIndex(e.cbutton.which)) {
+                    case 0: c1 = value != 0 ? c1 | (1 << 25) : c1 & (~(1 << 25)); break;
+                    case 1: c2 = value != 0 ? c2 | (1 << 25) : c2 & (~(1 << 25)); break;
+                    case 2: c3 = value != 0 ? c3 | (1 << 25) : c3 & (~(1 << 25)); break;
+                    case 3: c4 = value != 0 ? c4 | (1 << 25) : c4 & (~(1 << 25)); break;
+                    case -1: SDL_Log("Button pressed for unregistered controller.\n");
+                }
             }
         } else if (e.type == SDL_KEYUP) {
             switch(e.key.keysym.sym) {
