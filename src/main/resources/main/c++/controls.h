@@ -13,7 +13,12 @@
 extern "C" {
 #endif
 
+#include <SDL.h>
+
 typedef void (PXLCALL *controllerEventCallback)(int controller, int button, bool state);
+
+PXLEXPORT void registerCallback(controllerEventCallback cb);
+
 
 PXLEXPORT void initControls();
 
@@ -21,34 +26,27 @@ PXLEXPORT void setFileMapping(const char* file);
 
 PXLEXPORT void terminateControls();
 
-PXLEXPORT const char* getControllerName(int c);
+PXLEXPORT const char* getControllerName(SDL_JoystickID controllerId);
 
 ///
 /// Function to invoke when the state is to be polled instead of event driven.
 /// This can be helpful in multi threaded environment where the event callback can suffer from crashes.
-/// The function will invoke update and return the updated state.
 ///
-PXLEXPORT int update();
+PXLEXPORT void update();
 
-PXLEXPORT int* getMapping();
+/**
+ * Check if the controller list has changed since last call.
+ * The value will be reset to false after the call.
+ *
+ * @return true if the controller list has changed since last call.
+ */
+PXLEXPORT bool isControllerListChanged();
 
-PXLEXPORT int getController2();
+PXLEXPORT int getControllerNumber();
 
-PXLEXPORT int getController3();
+PXLEXPORT SDL_JoystickID* getControllers();
 
-PXLEXPORT int getController4();
-
-PXLEXPORT bool isC1Plugged();
-
-PXLEXPORT bool isC2Plugged();
-
-PXLEXPORT bool isC3Plugged();
-
-PXLEXPORT bool isC4Plugged();
-
-PXLEXPORT void runController();
-
-PXLEXPORT void registerCallback(controllerEventCallback cb);
+PXLEXPORT int getControllerState(SDL_JoystickID controllerId);
 
 PXLEXPORT void setMapping(int* m);
 
