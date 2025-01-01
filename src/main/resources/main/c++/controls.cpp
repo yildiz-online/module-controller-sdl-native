@@ -81,6 +81,13 @@ const char* getControllerName(SDL_JoystickID controllerId) {
     return SDL_GameControllerName(SDL_GameControllerFromInstanceID(controllerId));
 }
 
+const char* getControllerGuid(SDL_JoystickID controllerId) {
+    SDL_JoystickGUID guid = SDL_JoystickGetGUID(SDL_JoystickFromInstanceID(controllerId));
+    char guid_str[33];
+    SDL_JoystickGetGUIDString(guid, guid_str, sizeof(guid_str));
+    return guid_str;
+}
+
 int getControllerState(SDL_JoystickID controllerId) {
     return states.find(controllerId) -> second;
 }

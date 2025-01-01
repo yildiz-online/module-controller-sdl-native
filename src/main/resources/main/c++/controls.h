@@ -28,6 +28,8 @@ PXLEXPORT void terminateControls();
 
 PXLEXPORT const char* getControllerName(SDL_JoystickID controllerId);
 
+PXLEXPORT const char* getControllerGuid(SDL_JoystickID controllerId);
+
 ///
 /// Function to invoke when the state is to be polled instead of event driven.
 /// This can be helpful in multi threaded environment where the event callback can suffer from crashes.
