@@ -83,7 +83,8 @@ const char* getControllerName(SDL_JoystickID controllerId) {
 
 const char* getControllerGuid(SDL_JoystickID controllerId) {
     SDL_JoystickGUID guid = SDL_JoystickGetGUID(SDL_JoystickFromInstanceID(controllerId));
-    char guid_str[33];
+    // not thread safe, value shared between all calls to this function, use std::string instead
+    static char guid_str[33];
     SDL_JoystickGetGUIDString(guid, guid_str, sizeof(guid_str));
     return guid_str;
 }
