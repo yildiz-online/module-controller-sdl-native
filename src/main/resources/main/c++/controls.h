@@ -50,10 +50,6 @@ PXLEXPORT SDL_JoystickID* getControllers();
 
 PXLEXPORT int getControllerState(SDL_JoystickID controllerId);
 
-PXLEXPORT void setMapping(int* m);
-
-PXLEXPORT bool setRumbleState(int controller, bool rumble, int strength);
-
 #ifdef __cplusplus
 }
 #endif
