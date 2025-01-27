@@ -30,7 +30,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <name>Module Controller Sdl Native</name>
-  <description>Libretro bridge.</description>
+  <description>Native code for the SDL implementation of the controller module.</description>
   <inceptionYear>2022</inceptionYear>
   <url>https://engine.yildiz-games.be</url>
 
