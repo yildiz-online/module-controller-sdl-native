@@ -13,7 +13,7 @@
 extern "C" {
 #endif
 
-#include <SDL.h>
+#include <SDL3/SDL.h>
 
 typedef void (PXLCALL *controllerEventCallback)(int controller, int button, bool state);
 
