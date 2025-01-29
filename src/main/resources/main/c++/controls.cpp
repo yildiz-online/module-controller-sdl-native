@@ -41,7 +41,7 @@ void update() {
             }
         } else if (e.type == SDL_EVENT_GAMEPAD_AXIS_MOTION) {
             auto controller = SDL_GetGamepadFromID(e.gbutton.which);
-            if(e.gbutton.axis == SDL_GAMEPAD_AXIS_LEFT_TRIGGER) {
+            if(e.gaxis.axis == SDL_GAMEPAD_AXIS_LEFT_TRIGGER) {
                 auto value = SDL_GetGamepadAxis(controller, SDL_GAMEPAD_AXIS_LEFT_TRIGGER);
                 auto itr = states.find(e.gbutton.which);
                 if (itr != states.end()){
@@ -49,7 +49,7 @@ void update() {
                     state = value != 0 ? state | (1 << 24) : state & (~(1 << 24));
                     states[e.gbutton.which] = state;
                 }
-            } else if (e.gbutton.axis == SDL_GAMEPAD_AXIS_RIGHT_TRIGGER) {
+            } else if (e.gaxis.axis == SDL_GAMEPAD_AXIS_RIGHT_TRIGGER) {
                 auto value = SDL_GetGamepadAxis(controller, SDL_GAMEPAD_AXIS_RIGHT_TRIGGER);
                 auto itr = states.find(e.gbutton.which);
                 if (itr != states.end()){
@@ -59,16 +59,14 @@ void update() {
                 }
             }
         } else if (e.type == SDL_EVENT_GAMEPAD_ADDED) {
-            auto controller = SDL_OpenGamepad(e.gdevice.which);
             states[e.gdevice.which] = 0;
             controllerListChanged = true;
-            SDL_Log("Controller added %s", SDL_GetGamepadNameForID(controller));
+            SDL_Log("Controller added %s", SDL_GetGamepadNameForID(e.gdevice.which));
         } else if (e.type == SDL_EVENT_GAMEPAD_REMOVED) {
-            auto controller = SDL_GetGamepadFromID(e.gbutton.which);
             states.erase(e.gbutton.which);
             controllerListChanged = true;
-            SDL_Log("Controller removed %s", SDL_GetGamepadNameForID(controller));
-            SDL_CloseGamepad(controller);
+            SDL_Log("Controller removed %s", SDL_GetGamepadNameForID(e.gdevice.which));
+            SDL_CloseGamepad(SDL_GetGamepadFromID(e.gbutton.which));
         }
    }
 }
